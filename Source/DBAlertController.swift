@@ -10,10 +10,10 @@
 
 import UIKit
 
-public class DBAlertController: UIAlertController {
+open class DBAlertController: UIAlertController {
    
     /// The UIWindow that will be at the top of the window hierarchy. The DBAlertController instance is presented on the rootViewController of this window.
-    private lazy var alertWindow: UIWindow = {
+    fileprivate lazy var alertWindow: UIWindow = {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = DBClearViewController()
         window.backgroundColor = .clear
@@ -27,7 +27,7 @@ public class DBAlertController: UIAlertController {
     - parameter flag:       Pass true to animate the presentation; otherwise, pass false. The presentation is animated by default.
     - parameter completion: The closure to execute after the presentation finishes.
     */
-    public func show(animated flag: Bool = true, completion: (() -> Void)? = nil) {
+    open func show(animated flag: Bool = true, completion: (() -> Void)? = nil) {
         if let rootViewController = alertWindow.rootViewController {
             alertWindow.makeKeyAndVisible()
             
@@ -41,11 +41,17 @@ public class DBAlertController: UIAlertController {
 private class DBClearViewController: UIViewController {
     
     fileprivate override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIApplication.shared.statusBarStyle
+        return UIApplication.shared.connectedScenes
+            .filter({ $0.activationState == .foregroundActive })
+            .compactMap({$0 as? UIWindowScene})
+            .first?.statusBarManager?.statusBarStyle ?? UIStatusBarStyle.default
     }
     
     fileprivate override var prefersStatusBarHidden: Bool {
-        return UIApplication.shared.isStatusBarHidden
+        return UIApplication.shared.connectedScenes
+            .filter({ $0.activationState == .foregroundActive })
+            .compactMap({$0 as? UIWindowScene})
+            .first?.statusBarManager?.isStatusBarHidden ?? false
     }
     
 }
