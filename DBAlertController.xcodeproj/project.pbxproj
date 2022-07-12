@@ -82,9 +82,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88ADD9841BF1019D00957A9E /* Build configuration list for PBXNativeTarget "DBAlertController" */;
 			buildPhases = (
+				88ADD9791BF1019D00957A9E /* Headers */,
 				88ADD9771BF1019D00957A9E /* Sources */,
 				88ADD9781BF1019D00957A9E /* Frameworks */,
-				88ADD9791BF1019D00957A9E /* Headers */,
 				88ADD97A1BF1019D00957A9E /* Resources */,
 			);
 			buildRules = (
@@ -205,7 +205,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -259,7 +259,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
