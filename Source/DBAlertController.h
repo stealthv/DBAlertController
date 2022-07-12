@@ -2,8 +2,10 @@
 //  DBAlertController.h
 //  DBAlertController
 //
-//  Created by Dylan.Bettermann on 11/9/15.
+//  Originally Created by Dylan.Bettermann on 11/9/15.
 //  Copyright © 2015 Dylan Bettermann. All rights reserved.
+//
+//  Updates by Bran Handley
 //
 
 #import <UIKit/UIKit.h>
