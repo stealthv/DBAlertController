@@ -14,7 +14,12 @@ open class DBAlertController: UIAlertController {
    
     /// The UIWindow that will be at the top of the window hierarchy. The DBAlertController instance is presented on the rootViewController of this window.
     fileprivate lazy var alertWindow: UIWindow = {
-        let window = UIWindow(frame: UIScreen.main.bounds)
+        let window: UIWindow
+        if let currentScene = currentWindowScene() {
+            window = UIWindow(windowScene: currentScene)
+        } else {
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
         window.rootViewController = DBClearViewController()
         window.backgroundColor = .clear
         window.windowLevel = UIWindow.Level.alert
@@ -33,6 +38,28 @@ open class DBAlertController: UIAlertController {
             
             rootViewController.present(self, animated: flag, completion: completion)
         }
+    }
+    
+    /**
+     Attempt to find the window scene of the current window
+     
+     - Note: This may not work well in multi-scene apps - untested
+     */
+    func currentWindowScene() -> UIWindowScene? {
+        let scenes = UIApplication.shared.connectedScenes.compactMap({$0 as? UIWindowScene})
+        for scene in scenes {
+            if #available(iOS 15.0, *) {
+                if let keyWindow = scene.keyWindow {
+                    return keyWindow.windowScene
+                }
+            } else {
+                // Fallback on earlier versions
+                if let keyWindow = scene.windows.first(where: { $0.isKeyWindow }) {
+                    return keyWindow.windowScene
+                }
+            }
+        }
+        return nil
     }
     
 }
